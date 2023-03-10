@@ -3,7 +3,6 @@
   <h2 class="text-center">Patient Charts Updated as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
   
   <button onclick="window.print()", class="btn btn-sm btn-outline-success ps-3 pe-3 rounded-pill" >Print This Page</button>
-  <%= link_to 'Back to Patients', regis_path, class:"btn btn-sm btn-outline-secondary m-1 rounded-pill" %>
 
   <table class="table table-sm table-striped table-hover mt-1">
     <thead class="table-info">

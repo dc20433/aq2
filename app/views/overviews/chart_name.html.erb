@@ -3,13 +3,11 @@
   <h2 class="text-center">Patient Charts by Name as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
   
   <button onclick="window.print()", class="btn btn-sm btn-outline-success ps-3 pe-3 rounded-pill" >Print This Page</button>
-  <%= link_to 'Back to Patients', regis_path, class:"btn btn-sm btn-outline-secondary m-1 rounded-pill" %>
 
   <table class="table table-sm table-striped table-hover mt-1">
     <thead class="table-info">
       <tr>
         <th>Name</th>
-        <th>Name2</th>
         <th style="width:100px">Date Entered</th>
         <th>Subjective</th>
         <th>Objective</th>
@@ -25,7 +23,6 @@
         <% regi_id = Regi.where(id: chart.regi_id).pluck(:id).to_sentence %>
         <td><%= link_to show_name, regi_charts_path(regi_id) %></td>
         <% @name = chart.regi_id %>
-        <td><%= chart.name %></td>
         <td><%= chart.t_date %></td>
         <td><%= chart.subj %></td>
         <td><%= chart.obj %></td>
