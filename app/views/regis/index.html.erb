@@ -33,7 +33,7 @@
                 <td><%= regi.first_name %></td>
                 <td><%= regi.init? ? regi.init + "." : "" %></td>
                 <td><%= regi.gender %></td>
-                <td><%= regi.dob? ? ((Time.zone.now - regi.dob.to_time) / 1.year.seconds).floor : " " %></td>
+                <td><%= regi.dob? ? ((Time.now.in_time_zone("America/New_York") - regi.dob.to_time) / 1.year.seconds).floor : " " %></td>
                 <td><%= regi.dob %></td>                
                 <td>
                 <%= link_to 'Records', regi_patients_path(regi.id), class: "btn btn-outline-primary btn-sm rounded-pill" %>

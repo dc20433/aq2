@@ -1,9 +1,9 @@
 <% if (current_user && current_user.Manager?) || (current_user && current_user.Admin?) %>
 
-  <h2 class="text-center">Patient List as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
+  <h2 class="text-center">Patient List as of <%= Time.now.in_time_zone("America/New_York").strftime("%Y-%m-%d %H:%M") %></h2>
+  <p class="text-center"><button onclick="window.print()", class="btn btn-sm btn-outline-dark mb-3 ps-3 pe-3 rounded-pill">Print Entire Patient List ... </button></p>
   
   <table class="table table-sm table-striped table-hover mx-auto mt-1;" style="width: 45rem;">
-  <button onclick="window.print()", class="btn btn-sm btn-outline-dark mb-3 ps-3 pe-3 rounded-pill">Print Entire Patient List ... </button>
     <thead class="table-primary">
       <tr style="height:15px">
         <th>Last Name</th>
@@ -17,11 +17,11 @@
   <% @patient_list.each do |regi| %>
 
     <tr>
-      <td><%= regi.last_name %></td>
+      <td><%= link_to regi.last_name, regi_path(regi.id) %></td>
       <td><%= regi.first_name %></td>
       <td><%= regi.init? ? regi.init + "." : "" %></td>
       <td><%= regi.gender %></td>
-      <td><%= regi.dob? ? ((Time.zone.now - regi.dob.to_time) / 1.year.seconds).floor : " " %></td>
+      <td><%= regi.dob? ? ((Time.now.in_time_zone("America/New_York") - regi.dob.to_time) / 1.year.seconds).floor : " " %></td>
       <td><%= regi.dob %></td>                
     </tr>
     <% end %>

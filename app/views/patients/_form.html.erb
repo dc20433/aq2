@@ -16,8 +16,8 @@
   
     <div class="row">
       <div class="col-md-2">
-        <b><%= f.label :v_date, "Updated on", placeholder: "YYYY-MM-DD", class:"form-label" %></b>
-        <%= f.date_field :v_date, class: "form-control form-control-sm form-control-sm border-primary" %>
+        <b><%= f.label :v_date, "Updated on", class:"form-label" %></b>
+        <%= f.date_field :v_date, placeholder: "MM/DD/YYYY", class: "form-control form-control-sm form-control-sm border-primary" %>
       </div>
       <div class="col-md-5">
         <b><%= f.label :street, "Street", class:"form-label" %></b>
@@ -157,7 +157,7 @@
         <%= f.text_field :diag_where, class: "form-control form-control-sm border-primary" %>
       </div>
       <div class="col-md-2">
-        <b><%= f.label :aq_b4, "Acupunture before?", class:"form-label" %></b><br>
+        <b><%= f.label :aq_b4, "Had acupunture?", class:"form-label" %></b><br>
         <%= f.select :aq_b4, Patient::ACU_BEFORE, class: "form-control form-control-sm border-primary" %>
       </div>
       <div class="col-md-2">
@@ -224,7 +224,8 @@
       <%= f.submit "Submit", data: { burbo: false}, class:'btn btn-primary btn-sm m-2 rounded-pill' %>
   <% end %>    
     <%= button_to 'Delete', [@regi,@patient], method: :delete, class:"btn btn-danger btn-sm m-2 mt-2 rounded-pill", form: { data: { turbo_confirm: 'Are you sure?' }  } %>
-    <%= link_to "Return", regi_patients_path, class:'btn btn-success btn-sm m-2 rounded-pill' %>
+    <%# link_to "Return", regi_patients_path, class:'btn btn-success btn-sm m-2 rounded-pill' %>
+    <%= link_to "Return", :back, class:'btn btn-success btn-sm m-2 rounded-pill' %>
 
     </div>
 <% end %>

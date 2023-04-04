@@ -1,6 +1,6 @@
 <% if (current_user && current_user.Manager?) || (current_user && current_user.Admin?) %>
 
-  <h2 class="text-center">Patient List Updated as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
+  <h2 class="text-center">Patient List Updated as of <%= (Time.zone.now() - 4*3600).strftime("%Y-%m-%d %H:%M") %></h2>
   
   <table class="table table-sm table-striped table-hover mx-auto mt-1;" style="width: 48rem;">
   <button onclick="window.print()", class="btn btn-sm btn-outline-dark mb-3 ps-3 pe-3 rounded-pill">Print Entire Patient List ... </button>
@@ -19,8 +19,8 @@
   <% @patient_list_update.each do |regi| %>
 
     <tr>
-      <td><%= (regi.updated_at - 5*3600).strftime("%y-%m-%d") %></td>
-      <td><%= (regi.created_at - 5*3600).strftime("%y-%m-%d") %></td>
+      <td><%= (regi.updated_at - 4*3600).strftime("%y-%m-%d") %></td>
+      <td><%= (regi.created_at - 4*3600).strftime("%y-%m-%d") %></td>
       <td><%= link_to regi.last_name, regi_path(regi.id) %></td>
       <td><%= regi.first_name %></td>
       <td><%= regi.init %></td>

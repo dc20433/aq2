@@ -1,6 +1,6 @@
 <% if (current_user && current_user.Manager?) || (current_user && current_user.Admin?) %>
   
-  <h2 class="text-center">Patient Information as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
+  <h2 class="text-center">Patient Information as of <%= Time.now.in_time_zone("America/New_York").strftime("%Y-%m-%d %H:%M") %></h2>
 
   <button onclick="window.print()", class="btn btn-sm btn-outline-success ps-3 pe-3 rounded-pill" >Print This Page</button>
 
@@ -23,10 +23,13 @@
       <% Patient.joins(:regi).order("last_name, first_name, init, dob, v_date DESC").each do |patient| %>
         <tr style="height:15px">
         <td>
-        <%= @name != patient.regi_id ? Regi.where(id: patient.regi_id).pluck(:last_name).to_sentence + ", " + Regi.where(id: patient.regi_id).pluck(:first_name).to_sentence + " " + Regi.where(id: patient.regi_id).pluck(:init).to_sentence : " " %>
+        <% @prefix = Regi.find(id=patient.regi_id) %>
+        <% @name != patient.regi_id ? show_name = @prefix.last_name + ", " + @prefix.first_name + " " + @prefix.init : show_name = " " %>
+        <%= link_to show_name, regi_patient_path(patient.regi_id, patient) %>
         </td>
-            <% @name=patient.regi_id %>
-          <td><%= patient.v_date %></td>
+          <td>
+          <%= patient.v_date %>
+          </td>
           <td>
             <%= patient.street %><%= ', ' if patient.street? %>
             <%= patient.city %>
@@ -40,9 +43,9 @@
           <td><%= patient.weight %></td>
           <td>
             <%= '1.' if patient.com1? %>
-            <%= patient.com1 %><%= ' 2.' if patient.com2? %>
-            <%= patient.com2 %><%= ' 3.' if patient.com3? %>
-            <%= patient.com3 %>
+            <%= patient.com1.strip %><%= '; 2.' if patient.com2? %>
+            <%= patient.com2.strip %><%= '; 3.' if patient.com3? %>
+            <%= patient.com3.strip %>
           </td>
           <td>
             <%= patient.d_onset %><%= '/Pain: ' if patient.pain_scale? %>
@@ -50,7 +53,7 @@
           </td>
           <td><%= patient.pcp_name %></td>
           <td>
-            <%= patient.di_list.to_sentence.gsub(/_/,' ') %><%= ', ' if patient.o_dis? %>
+            <%= patient.di_list.to_sentence.gsub(/_/, ' ').gsub(/;/, '') %><%= ', ' if patient.o_dis? %>
             <%= patient.o_dis %><%= ', ' if patient.inj_surg? %>
             <%= patient.inj_surg %><%= ', Preg' if patient.preg == 'Yes' %>
           </td>

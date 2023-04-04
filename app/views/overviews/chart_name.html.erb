@@ -1,6 +1,6 @@
 <% if (current_user && current_user.Manager?) || (current_user && current_user.Admin?) %>
 
-  <h2 class="text-center">Patient Charts by Name as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
+  <h2 class="text-center">Patient Charts by Name as of <%= Time.now.in_time_zone("America/New_York").strftime("%Y-%m-%d %H:%M") %></h2>
   
   <button onclick="window.print()", class="btn btn-sm btn-outline-success ps-3 pe-3 rounded-pill" >Print This Page</button>
 
@@ -19,11 +19,12 @@
       <% @name = 0 %>
       <% Chart.joins(:regi).order("last_name, first_name, init, dob, t_date DESC").each do |chart| %>
         <tr style="height:15px">
-        <% @name != chart.regi_id ? show_name = Regi.where(id: chart.regi_id).pluck(:last_name).to_sentence + ", " + Regi.where(id: chart.regi_id).pluck(:first_name).to_sentence + " " + Regi.where(id: chart.regi_id).pluck(:init).to_sentence : show_name = " " %>
+        <% @prefix = Regi.find(id=chart.regi_id) %>
+        <% @name != chart.regi_id ? show_name = @prefix.last_name + ", " + @prefix.first_name + " " + @prefix.init : show_name = " " %>
         <% regi_id = Regi.where(id: chart.regi_id).pluck(:id).to_sentence %>
         <td><%= link_to show_name, regi_charts_path(regi_id) %></td>
         <% @name = chart.regi_id %>
-        <td><%= chart.t_date %></td>
+        <td><%= link_to chart.t_date, regi_chart_path(chart.regi_id, chart) %></td>
         <td><%= chart.subj %></td>
         <td><%= chart.obj %></td>
         <td><%= chart.assess %></td>

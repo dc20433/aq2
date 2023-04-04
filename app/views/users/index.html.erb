@@ -3,10 +3,10 @@
     class="screen"
     style="background-image: url(<%= asset_path 'pine_trees.jpg' %> );">
     <div class="color-overlay d-flex justify-content-center">  
-      <div class="card mt-3 mx-auto border-primary" style="width: 40rem;">
+      <div class="card mt-3 mx-auto border-primary" style="width: 44rem;">
         <div class="card shadow border-dark">
           <div class="card-header">
-            <h2 class="card-title text-center">Permitted Users</h2>
+            <h2 class="card-title text-center">PERMITTED USERS as at <%= Time.now.in_time_zone("America/New_York").strftime("%m-%d-%Y %H:%m") %></h2>
           </div>
           <div class="card-body">
             <table class="table table-sm table-striped table-hover mx-auto mt-1" style="max-width: 800px">
@@ -20,12 +20,12 @@
                 </tr>
               </thead>
               <tbody>
-                <% @users.order('role ASC', 'current_sign_in_at DESC').each do |user| %>
+                <% @users.order('role, email', 'current_sign_in_at DESC').each do |user| %>
                 <tr>
                   <td><%= link_to_unless_current user.email, user_path(user.id) %></td>
                   <td><%= user.role %></td>
-                  <td><%= (user.current_sign_in_at - 5*3600).strftime("%H:%M %m-%d-%Y") %></td>
-                  <td><%= (user.last_sign_in_at - 5*3600).strftime("%H:%M %m-%d-%Y") %></td>
+                  <td><%= user.current_sign_in_at.in_time_zone("America/New_York").strftime("%H:%M %m-%d-%y") %></td>
+                  <td><%= user.last_sign_in_at.in_time_zone("America/New_York").strftime("%H:%M %m-%d-%y") %></td>
                   <td class="align-middle"><%= user.sign_in_count %></td>
                 </tr>
                 <% end %>

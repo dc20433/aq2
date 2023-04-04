@@ -1,6 +1,6 @@
 <% if (current_user && current_user.Manager?) || (current_user && current_user.Admin?) %>
 
-  <h2 class="text-center">Patient Charts Updated as of <%= (Time.zone.now() - 5*3600).strftime("%Y-%m-%d %H:%M") %></h2>
+  <h2 class="text-center">Patient Charts Updated as of <%= (Time.zone.now() - 4*3600).strftime("%Y-%m-%d %H:%M") %></h2>
   
   <button onclick="window.print()", class="btn btn-sm btn-outline-success ps-3 pe-3 rounded-pill" >Print This Page</button>
 
@@ -20,8 +20,8 @@
         <% Chart.joins(:regi).order("updated_at DESC, t_date DESC").each do |chart| %>
             <tr>
             <td>
-              <%= (chart.updated_at - 5*3600).strftime("%y-%m-%d") %> /
-              <%= (chart.created_at - 5*3600).strftime("%y-%m-%d") %>
+              <%= (chart.updated_at - 4*3600).strftime("%y-%m-%d") %> /
+              <%= (chart.created_at - 4*3600).strftime("%y-%m-%d") %>
             </td>
             <td><%= chart.t_date %></td>
             <% show_name = Regi.where(id: chart.regi_id).pluck(:last_name).to_sentence + ", " + Regi.where(id: chart.regi_id).pluck(:first_name).to_sentence + " " + Regi.where(id: chart.regi_id).pluck(:init).to_sentence %>
