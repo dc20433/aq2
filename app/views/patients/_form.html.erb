@@ -15,11 +15,11 @@
     <%= f.text_field :name, value: (@regi.last_name + ", " + @regi.first_name + " " + (@regi.init? ? (@regi.init + ".") : '' )), hidden: true %>
   
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-1">
         <b><%= f.label :v_date, "Updated on", class:"form-label" %></b>
         <%= f.date_field :v_date, placeholder: "MM/DD/YYYY", class: "form-control form-control-sm form-control-sm border-primary" %>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <b><%= f.label :street, "Street", class:"form-label" %></b>
         <%= f.text_field :street, class: "form-control form-control-sm border-primary" %>
       </div>
@@ -31,48 +31,53 @@
         <b><%= f.label :state, "State", class:"form-label" %></b>
         <%= f.text_field :state, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <b><%= f.label :zip, "Zip Code", class:"form-label" %></b>
         <%= f.text_field :zip, class: "form-control form-control-sm border-primary" %>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-1">
         <b><%= f.label :height, "Height", class:"form-label" %></b>
         <%= f.number_field :height, step: 0.1, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-1">
         <b><%= f.label :weight, "Weight", class:"form-label" %></b>
         <%= f.number_field :weight, step: 0.1, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <b><%= f.label :m_stat, "Marital Status", class:"form-label" %></b><br>
         <%= f.select :m_stat, Patient::MARITAL_STATUS, class: "form-select" %>
       </div>
-      <div class="col-md-4">
-        <b><%= f.label :referred, "Referred by", class:"form-label" %></b>
-        <%= f.text_field :referred, class: "form-control form-control-sm border-primary" %>
-      </div> 
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-1">
         <b><%= f.label :cell, "Cell Phone", class:"form-label" %></b>
         <%= f.text_field :cell, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-1">
         <b><%= f.label :home, "Home Phone", class:"form-label" %></b>
         <%= f.text_field :home, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-1">
         <b><%= f.label :work, "Work Phone", class:"form-label" %></b>
         <%= f.text_field :work, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <b><%= f.label :email, "Email", class:"form-label" %></b>
         <%= f.email_field :email, class: "form-control form-control-sm border-primary" %>
       </div>
+      <div class="col-md-2">
+        <b><%= f.label :occup, "Occupation", class:"form-label" %></b>
+        <%= f.text_field :occup, class: "form-control form-control-sm border-primary" %>
+      </div> 
+      <div class="col-md-2">
+        <b><%= f.label :company, "Company", class:"form-label" %></b>
+        <%= f.text_field :company, class: "form-control form-control-sm border-primary" %>
+      </div> 
+      <div class="col-md-3">
+        <b><%= f.label :referred, "Referred by", class:"form-label" %></b>
+        <%= f.text_field :referred, class: "form-control form-control-sm border-primary" %>
+      </div> 
     </div>
 
     <div class="row">
@@ -95,78 +100,17 @@
         <b><%= f.label :d_onset, "Date Onset", class:"form-label" %></b>
         <%= f.date_field :d_onset, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
         <b><%= f.label :pain_scale, "Pain Scale 1-10", class:"form-label" %></b>
         <%= f.number_field :pain_scale, in: 0..10, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-2">
-        <b><%= f.label :d_lost, "Work-days Lost", class:"form-label" %></b>
-        <%= f.number_field :d_lost, in: 0..100, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :d_restd, "Days Restricted", class:"form-label" %></b>
-        <%= f.number_field :d_restd, in: 0..100, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-3">
-        <b><%= f.label :c_onset, "Conditions Onset", class:"form-label" %></b>
-        <%= f.text_field :c_onset, class: "form-control form-control-sm border-primary" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <b><%= f.label :better, "What makes it better?", class:"form-label" %></b>
-        <%= f.text_field :better, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-6">
-        <b><%= f.label :worse, "What makes it worse?", class:"form-label" %></b>
-        <%= f.text_field :worse, class: "form-control form-control-sm border-primary" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2">
-        <b><%= f.label :o_drs, "Seen other Drs?", class:"form-label" %></b><br>
-        <%= f.select :o_drs, Patient::SEEN_DR, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :o_drs_when, "When?", class:"form-label" %></b>
-        <%= f.date_field :o_drs_when, class: "form-control form-control-sm border-primary" %>
-      </div>
       <div class="col-md-4">
-        <b><%= f.label :pcp_name, "Prim.Care Dr. Name", class:"form-label" %></b>
-        <%= f.text_field :pcp_name, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :hosp, "Hospitalized?", class:"form-label" %></b><br>
-        <%= f.select :hosp, Patient::HOSPITALIZED, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :h_when, "When?", class:"form-label" %></b>
-        <%= f.date_field :h_when, class: "form-control form-control-sm border-primary" %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <b><%= f.label :diag_given, "Diagnoses given?", class:"form-label" %></b>
+        <b><%= f.label :diag_given, "Diagnoses Given?", class:"form-label" %></b>
         <%= f.text_field :diag_given, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :diag_where, "Where", class:"form-label" %></b>
-        <%= f.text_field :diag_where, class: "form-control form-control-sm border-primary" %>
       </div>
       <div class="col-md-2">
         <b><%= f.label :aq_b4, "Had acupunture?", class:"form-label" %></b><br>
         <%= f.select :aq_b4, Patient::ACU_BEFORE, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :aqrist, "Name of Dr?", class:"form-label" %></b>
-        <%= f.text_field :aqrist, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :aq_where, "Where", class:"form-label" %></b>
-        <%= f.text_field :aq_where, class: "form-control form-control-sm border-primary" %>
       </div>
     </div>
 
@@ -182,37 +126,18 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <b><%= f.label :o_dis, "Other Issues", class:"form-label" %></b>
         <%= f.text_field :o_dis, class: "form-control form-control-sm border-primary" %>
       </div>
-      <div class="col-md-4">
-        <b><%= f.label :inj_surg, "Major Injuries/Surgeries", class:"form-label" %></b>
-        <%= f.text_field :inj_surg, class: "form-control form-control-sm border-primary" %>
-      </div>
-      <div class="col-md-4">
-        <b><%= f.label :med_taken, "Medicines Currently Taken", class:"form-label" %></b>
-        <%= f.text_field :med_taken, class: "form-control form-control-sm border-primary" %>
-      </div>
-    </div>
-  
-    <div class="row">
       <div class="col-md-2">
-        <b><%= f.label :alcohol, "Alcohol:How much?", class:"form-label" %></b>
-        <%= f.text_field :alcohol, class: "form-control form-control-sm border-primary", placeholder: "?/week" %>
-      </div>
-      <div class="col-md-2">
-        <b><%= f.label :tobacco, "Tobacco:How much?", class:"form-label" %></b>
-        <%= f.text_field :tobacco, class: "form-control form-control-sm border-primary", placeholder: "?/day"  %>
-      </div>
-      <div class="col-md-4">
-        <i>For female only:</i> 
-        <b><%= f.label :last_prd, "When was your last period?", class:"form-label" %></b>
+        <i>Female:</i> 
+        <b><%= f.label :last_prd, "Date last period?", class:"form-label" %></b>
         <%= f.date_field :last_prd, class: "form-control form-control-sm border-primary" %>
       </div>
       <div class="col-md-2">
-        <b><%= f.label :preg, "Are you pregnant?", class:"form-label" %></b><br>
-        <%= f.select :preg, Patient::PREG, class: "form-control form-control-sm border-primary" %>
+        <b><%= f.label :preg, "Are you pregnant?", class:"form-label select-label" %></b><br>
+        <%= f.select :preg, Patient::PREG, class: "form-select form-select-lg border-primary" %>
       </div>
       <div class="col-md-2">
         <b><%= f.label :preg_wks, "How many weeks?", class:"form-label" %></b>
@@ -221,11 +146,9 @@
     </div>
 
     <div class="btn-group" role="group">
-      <%= f.submit "Submit", data: { burbo: false}, class:'btn btn-primary btn-sm m-2 rounded-pill' %>
+      <%= f.submit "Agree", data: { burbo: false}, class:'btn btn-success btn-sm m-2 ps-4 pe-4 rounded-pill' %>
   <% end %>    
-    <%= button_to 'Delete', [@regi,@patient], method: :delete, class:"btn btn-danger btn-sm m-2 mt-2 rounded-pill", form: { data: { turbo_confirm: 'Are you sure?' }  } %>
-    <%# link_to "Return", regi_patients_path, class:'btn btn-success btn-sm m-2 rounded-pill' %>
-    <%= link_to "Return", :back, class:'btn btn-success btn-sm m-2 rounded-pill' %>
+    <%= button_to 'Disagree/Delete', [@regi,@patient], method: :delete, class:"btn btn-danger btn-sm m-2 mt-2 rounded-pill", form: { data: { turbo_confirm: 'Are you sure?' }  } %>
 
     </div>
 <% end %>

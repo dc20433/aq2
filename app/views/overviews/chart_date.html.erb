@@ -17,15 +17,12 @@
     </thead>
     </tbody>
         <% @date = 0 %>
-        <% Chart.joins(:regi).order("t_date DESC, last_name, first_name, init, dob").each do |chart| %>
+        <% @chart_date.each do |chart| %>
             <tr style="height:15px">
             <% @date != chart.t_date ? show_date = chart.t_date : show_date = " " %>
             <td><%= show_date %></td> 
             <% @date = chart.t_date %>
-            <% @prefix = Regi.find(id = chart.regi_id) %>
-            <% show_name = @prefix.last_name + ", " + @prefix.first_name + " " + (@prefix.init? ? @prefix.init + "." : " ") %>
-            <% regi_id = Regi.where(id: chart.regi_id).pluck(:id).to_sentence %>
-            <td><%= link_to show_name, regi_charts_path(regi_id) %></td>
+            <td><%= link_to chart.name, regi_charts_path(chart.regi_id) %></td>
             <td><%= chart.subj %></td>
             <td><%= chart.obj %></td>
             <td><%= chart.assess %></td>

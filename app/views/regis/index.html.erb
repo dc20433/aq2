@@ -36,7 +36,7 @@
                 <td><%= regi.dob? ? ((Time.now.in_time_zone("America/New_York") - regi.dob.to_time) / 1.year.seconds).floor : " " %></td>
                 <td><%= regi.dob %></td>                
                 <td>
-                <%= link_to 'Records', regi_patients_path(regi.id), class: "btn btn-outline-primary btn-sm rounded-pill" %>
+                <%= link_to 'Info', regi_patients_path(regi.id), class: "btn btn-outline-primary btn-sm ps-3 pe-3 rounded-pill" %>
                 <%= link_to 'Charts', regi_charts_path(regi.id), class: "btn btn-outline-info btn-sm rounded-pill" %>
                 <%= link_to 'Files', regi_filings_path(regi.id), class: "btn btn-outline-success btn-sm ps-3 pe-3 rounded-pill" %>
                 </td>

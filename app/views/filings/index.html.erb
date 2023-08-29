@@ -12,9 +12,9 @@
           </div>
           <div class="card-body">
             <%= link_to 'New Filing', new_regi_filing_path(params[:regi_id]), class: "btn btn-sm btn-outline-dark m-1 rounded-pill" %>
-            <%= link_to 'Patient Record', regi_patients_path, class:"btn btn-sm btn-outline-primary m-1 rounded-pill" %>
+            <%= link_to 'Patient Info', regi_patients_path, class:"btn btn-sm btn-outline-primary m-1 rounded-pill" %>
             <%= link_to 'Patient Charts', regi_charts_path, class:"btn btn-sm btn-outline-info m-1 rounded-pill" %>
-            <%= link_to 'Back to Patients', regis_path, class:"btn btn-sm btn-outline-secondary m-1 rounded-pill" %>
+            <%= link_to 'Previous Page', :back, class:"btn btn-sm btn-outline-secondary m-1 rounded-pill" %>
 
             <table class="table table-sm table-striped table-hover mt-1">
               <thead class="table-info">
